@@ -1,0 +1,14 @@
+cdn.jsdelivr.net
+developer.mozilla.org
+docs.oracle.com
+fontawesome.com
+getbootstrap.com
+jsr.io
+learn.microsoft.com
+marketplace.visualstudio.com
+prisma.io
+registry.npmjs.org
+validator.w3.org
+vsassets.io
+www.w3.org
+www.w3schools.com

@@ -1,5 +1,0 @@
-#!/bin/sh
-usbconfig list | egrep "Terminus|TP-Link" | cut -d: -f1 | while read dev; do
-    usbconfig -d "$dev" power_on
-    echo usbconfig -d "$dev" power_on
-done

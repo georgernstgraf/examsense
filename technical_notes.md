@@ -12,19 +12,3 @@ VBoxManage createmedium disk --filename imgstick.vmdk --format VMDK --variant Ra
 
 `VBoxManage createmedium disk --filename "Orbsmart_Raw.vmdk" --format VMDK --variant RawDisk --property RawDrive=/dev/zvol/rpool/orbsmart`
 
-## Q: I want as little caching of negative DNS responses as possible.
-
-### A: not cached Failures:
-
-- "servfail" (unbound does not implement this for local_zone) or
-- "refused" (unbounds type: "refuse").
-
-The current code uses "always_refuse", but
-
-- nxdomain (cachetime: negative ttl) (type: static and no local data)
-- nodata (cachetime negative ttl) (type: static and no local data)
-- notimp (!!)
-
-## Q: Do not allocate USB-ETH devices on ubuntu
-
-### A: /etc/NetworkManager/conf.d/99-usb-passthrough.conf
