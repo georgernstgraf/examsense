@@ -18,7 +18,7 @@ def send_ips_to_server(ips, url="http://192.168.21.1:8000/activeips"):
     result = response.read().decode('utf-8')
     return json.loads(result)
 
-def get_active_ips(subnet_prefix="192.168.21.", send_to_server=True):
+def get_active_ips(subnet_prefix="192.168.21."):
     result = subprocess.run(
         ["pfctl", "-ss"],
         capture_output=True,
@@ -31,10 +31,10 @@ def get_active_ips(subnet_prefix="192.168.21.", send_to_server=True):
     # print a date in the form "2024-06-15 14:30:00"
     from datetime import datetime
     print(datetime.now().strftime("%Y-%m-%d %H:%M:%S "), end="")
-    if send_to_server and sorted_ips:
-        print (send_ips_to_server(sorted_ips))
+    if sorted_ips:
+        print ("API response: " + str(send_ips_to_server(sorted_ips)))
     else:
-        print("\n")
+        print("no api call\n")
 
 if __name__ == "__main__":
     get_active_ips()
