@@ -67,14 +67,18 @@ def print_clients(clients):
 
 def scan_tik():
     clients = fetch_wireless_clients()
-    print_clients(clients)
     sorted_ips = extract_sorted_ips(clients)
 
     print(datetime.now().strftime("%Y-%m-%d %H:%M:%S "), end="")
     if sorted_ips:
-        print("API response: " + str(send_ips_to_server(sorted_ips)))
+        print(
+            "API response: {response} | clients: {count}".format(
+                response=send_ips_to_server(sorted_ips),
+                count=len(sorted_ips),
+            )
+        )
     else:
-        print("no api call")
+        print("no api call | clients: 0")
 
 
 if __name__ == "__main__":
