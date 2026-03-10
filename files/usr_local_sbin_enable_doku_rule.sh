@@ -8,5 +8,5 @@ sed -i "$BAK_EXT" "/<rule uuid=\"$UUID\"/,/<\/rule>/ s/<disabled>[01]<\/disabled
 
 configctl filter reload
 
-echo "Rule enabled. Backup saved to /conf/config.xml$BAK_EXT"
+echo "Rule enabled."
 
