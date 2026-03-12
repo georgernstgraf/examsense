@@ -12,8 +12,7 @@
 
 ## Source of truth
 
-- Installation/operational notes live in `README.md`.
-- Additional technical notes live in `technical_notes.md`.
+- Installation and operational notes live in `README.md` and this `AGENTS.md` file.
 - No Cursor rules (`.cursor/rules/`, `.cursorrules`) or Copilot instructions
   (`.github/copilot-instructions.md`) exist in this repo.
 
@@ -133,12 +132,11 @@
 - Treat `Mikrotik/` exports as sensitive material; `show-sensitive` exports and
   backup commands may contain live wireless keys or backup passwords.
 
-## Technical notes incorporated
+## Documentation notes
 
-- `technical_notes.md` is referenced as the place for additional operational
-  notes, but the file is not currently present in this repository.
-- If it is added later, treat example commands there as documentation, not as
-  automation to run without explicit user approval.
+- The repository no longer uses `technical_notes.md`.
+- Keep operational guidance in `README.md` or `AGENTS.md`, depending on whether
+  it is intended for human operators or automated coding agents.
 
 ## Operational context (from README)
 
@@ -152,4 +150,5 @@
 
 - Keep config files in `files/` aligned with their target system paths.
 - When adding new scripts, update `README.md` with deployment notes.
-- If you add a new operational workflow, document it in `technical_notes.md`.
+- If you add a new operational workflow, document it in `README.md` or
+  `AGENTS.md` as appropriate.

@@ -112,5 +112,5 @@ The rc.d service file is stored at `files/usr_local_etc_rc.d_uploadthing`.
 
 ## Notes
 
-- `technical_notes.md` is referenced by automation guidance but is not currently present in this repository.
+- Additional operational guidance now lives in `README.md` and `AGENTS.md` only; `technical_notes.md` is no longer used.
 - Review MikroTik exports before committing them; `show-sensitive` exports can include live secrets.
