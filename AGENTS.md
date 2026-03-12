@@ -19,7 +19,9 @@
 
 ## Build, lint, and test commands
 
-- There is no formal build system or test suite in the repo.
+- There is no formal test suite in the repo.
+- A small `Makefile` exists and currently builds `files/conf_config.xml` from
+  `/conf/config.xml` using `bin/redact-opnsense.sed`.
 - No lint configuration files were found (no `pyproject.toml`, `setup.cfg`,
   `.flake8`, `shellcheck` config, etc.).
 - Use ad-hoc execution commands and sanity checks when touching scripts.
@@ -27,7 +29,7 @@
 ### Common execution commands (FreeBSD/OPNsense)
 
 - Run the pfctl scan helper:
-  - `sudo /usr/local/bin/python3 /root/bin/scan_pfctl.py`
+  - `sudo /usr/local/bin/python3 /root/bin/scan-pfctl.py`
 - Run the cron wrapper for scanning:
   - `sudo /usr/local/opnsense/scripts/custom/nmap_cron.sh`
 - Run the USB NIC rename helper:
@@ -56,6 +58,8 @@
 - `files/` mirrors `/usr/local/...` paths on OPNsense for deployment.
 - `etc/` stores reference lists and operational notes.
 - `Mikrotik/` contains router configuration artifacts.
+- `Makefile` contains a local helper target for redacting and capturing
+  OPNsense config snapshots.
 
 ### Shell script conventions
 
@@ -126,23 +130,26 @@
 - Do not commit secrets or real MAC/IPs; use placeholders where possible.
 - Avoid embedding credentials; rely on system config or env vars.
 - Validate external URLs before use; prefer HTTPS when possible.
+- Treat `Mikrotik/` exports as sensitive material; `show-sensitive` exports and
+  backup commands may contain live wireless keys or backup passwords.
 
 ## Technical notes incorporated
 
-- `technical_notes.md` includes operational command snippets such as
-  `VBoxManage createmedium` and `nmap` XML to JSON conversions.
-- Treat those notes as examples; avoid running them automatically or as part of
-  scripts without explicit user approval.
+- `technical_notes.md` is referenced as the place for additional operational
+  notes, but the file is not currently present in this repository.
+- If it is added later, treat example commands there as documentation, not as
+  automation to run without explicit user approval.
 
 ## Operational context (from README)
 
 - Installation assumes cloning as root into `/root` and linking `examdns/bin`.
 - OPNsense configuration touches Unbound, NAT redirects, DOH aliasing, and cron.
 - There are explicit steps for USB NIC persistence and rc.d service setup.
+- The repository also includes a `Makefile` path for creating a redacted
+  `files/conf_config.xml` snapshot from a live OPNsense install.
 
 ## Working with this repo
 
 - Keep config files in `files/` aligned with their target system paths.
 - When adding new scripts, update `README.md` with deployment notes.
 - If you add a new operational workflow, document it in `technical_notes.md`.
-
