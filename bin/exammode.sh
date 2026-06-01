@@ -17,13 +17,13 @@ BAK_EXT=".bak_$(date +%F)"
 
 case "${1:-}" in
 start)
-    sed -i "$BAK_EXT" "/<rule uuid=\"$UUID\"/,/<\/rule>/ s/<disabled>[01]<\/disabled>/<disabled>0<\/disabled>/" "$CONFIG"
-    configctl filter reload || exit 2
+    sudo sed -i "$BAK_EXT" "/<rule uuid=\"$UUID\"/,/<\/rule>/ s/<disabled>[01]<\/disabled>/<disabled>0<\/disabled>/" "$CONFIG"
+    sudo configctl filter reload || exit 2
     echo "exammode: rule enabled (internet blocked)"
     ;;
 stop)
-    sed -i "$BAK_EXT" "/<rule uuid=\"$UUID\"/,/<\/rule>/ s/<disabled>[01]<\/disabled>/<disabled>1<\/disabled>/" "$CONFIG"
-    configctl filter reload || exit 2
+    sudo sed -i "$BAK_EXT" "/<rule uuid=\"$UUID\"/,/<\/rule>/ s/<disabled>[01]<\/disabled>/<disabled>1<\/disabled>/" "$CONFIG"
+    sudo configctl filter reload || exit 2
     echo "exammode: rule disabled (internet allowed)"
     ;;
 status)
